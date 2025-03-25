@@ -28,8 +28,8 @@ Before running this application, ensure you have the following installed:
 ## Installation & Setup
 ### 1️⃣ Clone the Repository
 ```sh
-git clone 
-cd auth-system
+git clone https://github.com/itsAman-24/Postgres
+cd folder_name
 ```
 
 ### 2️⃣ Install Dependencies
@@ -44,21 +44,20 @@ DB_USER=your_db_username
 DB_PASSWORD=your_db_password
 DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=auth_system
+DB_DATABASE=DB_name
 PORT=3000
 
-RECAPTCHA_SITE_KEY=your_recaptcha_site_key
-RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
+RECAPTCHA_SITE_KEY=recaptcha_site_key
+RECAPTCHA_SECRET_KEY=recaptcha_secret_key
 
-JWT_SECRET=your_jwt_secret
-SESSION_SECRET=your_session_secret
+JWT_SECRET=jwt_secret
+SESSION_SECRET=session_secret
 ```
-Replace the placeholders with your actual credentials.
 
 ### 4️⃣ Set Up PostgreSQL Database
 #### Open PostgreSQL CLI:
 ```sh
-psql -U your_db_username
+psql -U username
 ```
 #### Create Database & Table:
 ```sql
@@ -67,9 +66,9 @@ CREATE DATABASE auth_system;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  username VARCHAR(50) UNIQUE NOT NULL,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
+  username VARCHAR(200) UNIQUE NOT NULL,
+  email VARCHAR(200) UNIQUE NOT NULL,
+  password VARCHAR(200) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
@@ -108,18 +107,9 @@ Server runs at: **http://localhost:3000**
 - **Google reCAPTCHA:** Prevents bot attacks.
 - **Rate Limiting:** Restricts multiple login attempts.
 
-## Deployment (Optional)
-For deploying the app, you can use **Heroku, Render, or Railway**. Ensure:
-- Update `.env` variables.
-- Use a cloud-hosted PostgreSQL database.
-- Set `secure: true` for JWT cookies in `app.js`.
-
-## License
-This project is **MIT licensed**.
-
 ## Contributors
-Developed by **Your Name**. Feel free to contribute!
+Developed by **Aman Kumar Pandey**. Feel free to contribute!
 
 ---
 ### 🎯 Need Help?
-Open an issue or reach out at **your_email@example.com**.
+Open an issue or reach out at **amanpan2410@gmail.com**.
