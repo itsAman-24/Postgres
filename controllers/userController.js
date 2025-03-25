@@ -1,4 +1,3 @@
-const jwt = require("jsonwebtoken");
 const { pool } = require("../config/db");
 
 exports.dashboard = async (req, res) => {
