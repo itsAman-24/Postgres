@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    #btn {
+        background: #fff;
+    }
+
+    a {
+      display: inline-block;
+      color: #4e54c8;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+        background: #aaa1f3;
+    }
+
+    @media screen and (max-width: 480px) {
+      .container {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <%- include("partials/navbar") %>
+ <div class="container">
+  <h1>Welcome to SecureApp 🔐</h1>
+  <p>SecureApp is a secure, user-friendly authentication system built with Node.js, PostgreSQL & JWT.</p>
+  <p>Register or login using the navigation bar above.</p>
+  <p>Protect your profile with confidence!</p>
+</div>
+</body>
+</html>
