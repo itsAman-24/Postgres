@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(to right, #4e54c8, #8f94fb);
       color: #fff;
       display: flex;
@@ -18,63 +18,78 @@
       flex-direction: column;
     }
 
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 2.5rem;
       border-radius: 1rem;
       width: 90%;
-      max-width: 400px;
+      max-width: 420px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
       text-align: center;
+      position: relative;
     }
 
-    h1 {
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
       margin-bottom: 1rem;
     }
 
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
     p {
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
-    }
-
-    a {
-      display: inline-block;
-      color: #4e54c8;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      margin-top: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-
-    a:hover {
-      background: #649fb3;
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
     }
 
     .links {
-      margin-top: 1rem;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      color: #fff;
+      font-weight: bold;
+      background: #6a70e0;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #524eb7;
+      transform: scale(1.05);
     }
 
     @media screen and (max-width: 480px) {
-      .container {
-        padding: 1.2rem;
+      .dashboard-card {
+        padding: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
   <%- include("partials/navbar") %>
-  <div class="container">
-    <h1>Welcome, <%= user.username %></h1>
+
+  <div class="dashboard-card">
+    <h1>Welcome, <%= user.username %> 👋</h1>
     <p>Email: <%= user.email %></p>
+
     <div class="links">
-      <a href="/profile">Go to Profile</a>
-      <a href="/logout">Logout</a>
+      <a href="/profile" class="btn">View Profile</a>
+      <a href="/logout" class="btn">Logout</a>
     </div>
   </div>
 </body>

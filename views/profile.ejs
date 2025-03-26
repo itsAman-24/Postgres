@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(to right, #4e54c8, #8f94fb);
       color: #fff;
       display: flex;
@@ -18,53 +18,78 @@
       flex-direction: column;
     }
 
-    .container {
-      background: rgba(255, 255, 255, 0.1);
+    .profile-card {
+      background: rgba(255, 255, 255, 0.15);
       padding: 2rem;
       border-radius: 1rem;
       width: 90%;
-      max-width: 400px;
+      max-width: 420px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
       text-align: center;
+      position: relative;
     }
 
-    h1 {
-      margin-bottom: 1.5rem;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
       margin-bottom: 1rem;
     }
 
-    ul li {
-      background: rgba(255, 255, 255, 0.2);
-      margin: 0.4rem 0;
-      padding: 0.6rem;
-      border-radius: 0.4rem;
-      font-size: 1rem;
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
-    a.button {
-      color: #4e54c8;
+    p {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-details {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .profile-details li {
+      background: rgba(255, 255, 255, 0.2);
+      margin: 0.5rem 0;
+      padding: 0.7rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
       font-weight: bold;
-      padding: 0.7rem 1.2rem;
+    }
+
+    .profile-details li span {
+      font-weight: normal;
+      opacity: 0.9;
+    }
+
+    .button {
+      color: #fff;
+      font-weight: bold;
+      background: #6a70e0;
+      padding: 0.8rem 1.5rem;
       border-radius: 0.5rem;
       text-decoration: none;
       display: inline-block;
-      transition: background 0.3s ease;
+      margin-top: 1.5rem;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    a.button:hover {
-      background: #aaa1f3;
+    .button:hover {
+      background: #524eb7;
+      transform: scale(1.05);
     }
 
     @media screen and (max-width: 480px) {
-      .container {
-        padding: 1.2rem;
+      .profile-card {
+        padding: 1.5rem;
       }
     }
   </style>
@@ -72,14 +97,18 @@
 <body>
   <%- include("partials/navbar") %>
 
-  <div class="container">
-    <h1>User Profile</h1>
-    <ul>
-      <li><strong>ID:</strong> <%= user.id %></li>
-      <li><strong>Name:</strong> <%= user.username %></li>
-      <li><strong>Email:</strong> <%= user.email %></li>
-      <li><strong>Created At:</strong> <%= user.created_at || 'N/A' %></li>
+  <div class="profile-card">
+    <!-- Profile Picture -->
+    <img src="https://ui-avatars.com/api/?name=<%= user.username %>&background=random" alt="User Avatar" class="profile-avatar" />
+
+    <h1><%= user.username %></h1>
+    <p><%= user.email %></p>
+
+    <ul class="profile-details">
+      <li>ID: <span><%= user.id %></span></li>
+      <li>Joined: <span><%= user.created_at || 'N/A' %></span></li>
     </ul>
+
     <a href="/dashboard" class="button">Back to Dashboard</a>
   </div>
 </body>
