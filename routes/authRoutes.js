@@ -10,7 +10,7 @@ router.get("/login", (req, res) => {
     const siteKey = process.env.RECAPTCHA_SITE_KEY; 
 
     if (!siteKey) {
-        console.error("❌ ERROR: RECAPTCHA_SITE_KEY is missing in .env file!");
+        console.error("RECAPTCHA_SITE_KEY is missing in .env file!");
     }
     
     res.render("login", { 

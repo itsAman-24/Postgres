@@ -42,18 +42,21 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   const { email, password, "g-recaptcha-response": captchaToken } = req.body;
 
-  if (!captchaToken) return res.render("login", { message: "❌ reCAPTCHA verification failed" });
+  if (!captchaToken) return res.render("login", { message: "reCAPTCHA verification failed" });
 
   const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`;
 
   try {
     const response = await axios.post(verifyURL);
-    if (!response.data.success) return res.render("login", { message: "❌ reCAPTCHA failed" });
+    if (!response.data.success) return res.render("login", { message: "reCAPTCHA failed" });
   } catch (err) {
-    return res.render("login", { message: "❌ reCAPTCHA server error", siteKey: process.env.RECAPTCHA_SITE_KEY });
+    return res.render("login", { message: "reCAPTCHA server error", siteKey: process.env.RECAPTCHA_SITE_KEY });
   }
 
   const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+
+  // console.log(result.rows);
+
   if (result.rows.length === 0) return res.render("login", { message: "Invalid email or password" });
 
   const user = result.rows[0];
