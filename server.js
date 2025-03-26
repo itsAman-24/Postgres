@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const path = require("path");
@@ -15,18 +14,13 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
-  secret: process.env.SESSION_SECRET || "secretkey",
-  resave: false,
-  saveUninitialized: false
-}));
 
 const loginLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000,
+  windowMs: 1 * 60 * 1000,   // 1 minute window time for login attempts , if user exceeds the limit, they will be blocked for 1 minute
   max: 5, // Max 5 login attempts
   handler: (req, res) => {
     return res.status(429).render("login", {
-      message: "⚠️ Too many login attempts. Please try again after 1 minutes.",
+      message: "Too many login attempts. Please try again after 1 minutes.",
       siteKey: process.env.RECAPTCHA_SITE_KEY
     });
   }

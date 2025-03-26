@@ -71,5 +71,5 @@ exports.loginUser = async (req, res) => {
 
 exports.logoutUser = (req, res) => {
   res.clearCookie("token");
-  req.session.destroy(() => res.redirect("/login"));
+  res.redirect("/login");
 };
